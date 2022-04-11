@@ -20,7 +20,8 @@
                 return{
                     text: "Hola vue",
                 }
-            }
+            },
+            template: `<div v-once v-text="text"></div>`
         }).mount("#app");
     </script>
 </body>
