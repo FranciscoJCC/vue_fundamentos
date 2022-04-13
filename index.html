@@ -9,9 +9,7 @@
     
 </head>
 <body>
-    <div id="app">
-        {{text}}
-    </div>
+    <div id="app"></div>
 
     <script src="https://unpkg.com/vue@3"></script>
     <script>
@@ -19,9 +17,15 @@
             data(){
                 return{
                     text: "Hola vue",
+                    img_url : "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ"
                 }
             },
-            template: `<div v-once v-text="text"></div>`
+            template: `
+                <div v-once v-text="text"></div>
+                <div>
+                    <img :src="img_url" v-bind:alt="img_url">
+                </div>
+            `
         }).mount("#app");
     </script>
 </body>
