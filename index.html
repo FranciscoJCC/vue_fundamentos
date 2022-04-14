@@ -16,18 +16,26 @@
         const vm = Vue.createApp({
             data(){
                 return{
-                    text: "Hola vue",
+                    firstname: "Francisco",
+                    lastname: "Cervantes",
+                    now: new Date(),
                 }
             },
             methods: {
                 
             },
+            computed:{
+                //Las propiedades computadas no cambian el valor original de la variable
+                fullname(){
+                    return this.firstname + ' ' + this.lastname;
+                },
+                today(){
+                    return this.now.toLocaleDateString();
+                }
+            },
             template: `
-                <p>{{text}}</p>
-                <input 
-                    type="text"
-                    v-model="text"
-                />
+                <div> {{fullname}}  </div>
+                <div> {{today}}  </div>
             `
         }).mount("#app");
     </script>
