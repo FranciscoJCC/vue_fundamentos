@@ -18,6 +18,8 @@
                 return{
                     firstname: "Francisco",
                     lastname: "Cervantes",
+                    text : "Puerta cerrada",
+                    open : false,
                     now: new Date(),
                 }
             },
@@ -33,9 +35,30 @@
                     return this.now.toLocaleDateString();
                 }
             },
+            watch:{
+                /*
+                    value : valor actual
+                    old : valor anterior
+                */
+                firstname(value, old){
+                    console.log("cambio de nombre");
+                },
+
+                open(value){
+                    (value) ? this.text = "Puerta abierta" : this.text = "Puerta cerrada";
+                }
+            },
             template: `
                 <div> {{fullname}}  </div>
                 <div> {{today}}  </div>
+                <div> {{text}}  </div>
+                <button
+                    type="button"
+                    @click="open = !open"
+                    v-text="(open) ? 'Cerrar puerta' : 'Abrir puerta'"
+                >
+                    
+                </button>
             `
         }).mount("#app");
     </script>
