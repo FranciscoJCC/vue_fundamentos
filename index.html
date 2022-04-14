@@ -17,17 +17,17 @@
             data(){
                 return{
                     text: "Hola vue",
-                    img_url : "https://i.picsum.photos/id/1/5616/3744.jpg?hmac=kKHwwU8s46oNettHKwJ24qOlIAsWN9d2TtsXDoCWWsQ",
-                    counter : 0,
                 }
             },
             methods: {
-                increment(){
-                    this.counter ++;
-                }
+                
             },
             template: `
-                <button v-on:click="increment">{{counter}}</button>
+                <p>{{text}}</p>
+                <input 
+                    type="text"
+                    v-model="text"
+                />
             `
         }).mount("#app");
     </script>
