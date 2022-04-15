@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comunicación hijo a padre</title>
+
+    
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return{
+                    items : ['1','2','3'],
+                }
+            },
+
+            methods: {
+                remove(item){
+                    this.items = this.items.filter((el, index) => index !== item);
+                }
+            },
+            
+            template: `
+                <div>
+                    <ul>
+                        <v-item 
+                            v-for="(item,index) in items"
+                            :key="index"
+                            :text="item"
+                            v-on:removeItem="remove(index)"
+                        />
+                        
+                    </ul>                    
+                </div>
+            `
+        });
+
+        app.component("v-item",{
+            props : {
+                text : String,
+            },
+
+            methods:{
+                rm(){
+                    this.$emit("removeItem");
+                }
+            },
+
+            template: `
+                <li @click="rm">{{text}}</li>
+            `
+        });
+
+        const vm = app.mount("#app");
+
+    </script>
+    <style>
+        
+    </style>
+</body>
+</html>
