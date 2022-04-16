@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comunicación hijo a padre</title>
+
+    
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return{
+                    text : "Hola vue",
+                }
+            },
+
+            provide(){
+                return{
+                    otherText: this.text,
+                }
+            },
+ 
+            template: `
+                <div>
+                    <p>{{text}}</p>
+                </div>
+                <v-hijo />
+            `
+        });
+
+        app.component("v-hijo",{
+            props : {
+                value : String,
+            },
+
+            methods:{
+        
+            },
+
+            template: `
+                <v-nieto />
+            `
+        });
+
+        app.component("v-nieto",{
+
+            inject : ["otherText"],
+            
+            template: `
+                <div>
+                    <p>{{otherText}}</p>
+                </div>
+            `
+        });
+
+        const vm = app.mount("#app");
+
+    </script>
+    <style>
+        
+    </style>
+</body>
+</html>
